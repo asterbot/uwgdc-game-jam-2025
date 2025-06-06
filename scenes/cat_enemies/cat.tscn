@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://gsj0vwdpsop1"]
+
+[ext_resource type="Script" path="res://scenes/cat_enemies/cat.gd" id="1_xxoqr"]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_xxoqr")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
