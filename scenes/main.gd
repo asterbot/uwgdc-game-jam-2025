@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var projectile_scene = preload("res://scenes/cat_enemies/projectile.tscn")  
+@onready var projectile_scene = preload("res://scenes/projectile/projectile.tscn")  
 
 var can_shoot: bool = true
 
@@ -21,7 +21,7 @@ func _input(event):
 		#print("Mouse Click/Unclick at: ", event.position)
 		if can_shoot:
 			var new_projectile = projectile_scene.instantiate()
-			new_projectile.position = event.position
+			new_projectile.mouse_position = event.position
 			$Projectiles.add_child(new_projectile)
 			can_shoot=false
 			$CoolDownTimer.start()
