@@ -1,11 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://dnrkqfb11gtlu"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_e7st0"]
-[ext_resource type="Texture2D" uid="uid://wkgntkopfb3d" path="res://assets/aim.png" id="2_tvuhw"]
+[ext_resource type="PackedScene" uid="uid://2mf33gict135" path="res://scenes/player/player.tscn" id="2_nij8n"]
 [ext_resource type="PackedScene" uid="uid://gtiygoqo12t1" path="res://scenes/cat_enemies/test_cat/test_cat.tscn" id="3_jy5we"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_e7st0")
+
+[node name="Player" parent="." instance=ExtResource("2_nij8n")]
+unique_name_in_owner = true
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -15,12 +18,4 @@ collision_layer = 1
 collision_mask = 1
 
 [node name="Projectiles" type="Node2D" parent="."]
-
-[node name="CoolDownTimer" type="Timer" parent="."]
-wait_time = 0.2
-one_shot = true
-
-[node name="Cursor" type="Sprite2D" parent="."]
-texture = ExtResource("2_tvuhw")
-
-[connection signal="timeout" from="CoolDownTimer" to="." method="_on_cool_down_timer_timeout"]
+unique_name_in_owner = true
