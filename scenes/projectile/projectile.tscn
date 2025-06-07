@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d4l6e2xeutopg"]
 
-[ext_resource type="Texture2D" uid="uid://i5fmpkpktvn3" path="res://assets/deodorant.png" id="1_gs5qr"]
+[ext_resource type="Texture2D" uid="uid://i5fmpkpktvn3" path="res://assets/player/deodorant.png" id="1_gs5qr"]
 [ext_resource type="Script" path="res://scenes/projectile/projectile.gd" id="1_we240"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6m5x"]
@@ -11,7 +11,7 @@ size = Vector2(65, 76)
 
 [node name="Projectile" type="CharacterBody2D"]
 position = Vector2(-1, 0)
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_we240")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
