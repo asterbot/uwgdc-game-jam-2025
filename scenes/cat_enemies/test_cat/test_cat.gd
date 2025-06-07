@@ -1,4 +1,4 @@
-extends Enemy
+extends Cat
 
 
 func _ready() -> void:

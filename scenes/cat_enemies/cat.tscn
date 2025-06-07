@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scenes/cat_enemies/cat.gd" id="1_xxoqr"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Cat" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_xxoqr")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
