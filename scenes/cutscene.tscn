@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://xdvp87f7qsh5"]
+
+[ext_resource type="Script" path="res://scenes/cutscene.gd" id="1_xqrxb"]
+[ext_resource type="Texture2D" uid="uid://ycs7fp4dmbx3" path="res://icon.svg" id="2_1uen7"]
+[ext_resource type="FontFile" uid="uid://c0e34avfpfc2" path="res://assets/tinypixel.otf" id="2_11kl6"]
+
+[node name="Cutscene" type="CanvasLayer"]
+script = ExtResource("1_xqrxb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="CutsceneImage" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_1uen7")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="CutsceneText" type="RichTextLabel" parent="VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/normal_font = ExtResource("2_11kl6")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]hello there (temp)"
+fit_content = true
+scroll_active = false
