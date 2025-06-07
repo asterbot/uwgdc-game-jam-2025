@@ -1,6 +1,12 @@
 extends Node2D
 
 @onready var projectile_scene = preload("res://scenes/projectile/projectile.tscn")  
+@onready var cursor_sprite: Sprite2D = $Cursor
+@onready var cannon_sprite: Sprite2D = $Cannon
+
+var mouse_pos: Vector2
+var cannon_pos: Vector2
+var viewport_size: Vector2
 
 var can_shoot: bool = true
 
@@ -8,20 +14,22 @@ var can_shoot: bool = true
 var projectiles_node
 
 func _ready() -> void:
-	pass
+	self.z_index = Globals.NUM_Z_INDICES*10; # draw on top of EVERYTHING
 
 func _process(delta: float) -> void:
-	var mouse_pos: Vector2 = get_local_mouse_position()
-	var cannon_pos: Vector2 = $Cannon.position
+	mouse_pos = get_local_mouse_position()
+	cannon_pos = cannon_sprite.position
+	viewport_size = get_viewport().get_visible_rect().size
 	
-	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	# positions will be bounded within the screen
-	$Cursor.position = Vector2(
+	cursor_sprite.position = Vector2(
 		clamp(mouse_pos.x, 0, viewport_size.x),
 		clamp(mouse_pos.y, 0, viewport_size.y)
 	)
+	var cursor_sprite_scale: float = 0.5 + mouse_pos.y/viewport_size.y
+	cursor_sprite.scale = Vector2(cursor_sprite_scale, cursor_sprite_scale)
 	# cannon follows the cursor, always at bottom of screen
-	$Cannon.position = Vector2(
+	cannon_sprite.position = Vector2(
 		# x-coord uses frame-agnositc lerp smoothing, source: https://youtu.be/LSNQuFEDOyQ?t=2921
 		mouse_pos.x + (cannon_pos.x - mouse_pos.x)*exp(-5*delta),
 		viewport_size.y
@@ -29,11 +37,12 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent):
-	if event is InputEventMouseButton and Input.is_action_just_pressed("shoot"):
+	if event is InputEventMouseButton and Input.is_action_pressed("shoot"):
 		if can_shoot:
 			var new_projectile = projectile_scene.instantiate()
-			new_projectile.start_pos = $Cannon.position
+			new_projectile.start_pos = %ProjectileSpawnPos.global_position
 			new_projectile.mouse_pos = event.position
+			new_projectile.target_depth = mouse_pos.y/viewport_size.y
 			projectiles_node.add_child(new_projectile)
 			can_shoot = false
 			$CooldownTimer.start()
