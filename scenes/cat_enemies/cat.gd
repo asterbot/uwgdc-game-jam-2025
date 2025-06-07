@@ -17,13 +17,12 @@ func _process(_delta: float) -> void:
 	depth = position.y/viewport_size.y
 	self.scale = Vector2(depth, depth)
 	
+	self.z_index = floor(depth*Globals.NUM_Z_INDICES)
+	
 	
 	for proj in projectiles_in_range:
-		#print("TIME: ", proj.time) # 0 to 1, based on depth
-		
-		var time_left_normalized: float = proj.timer.time_left/proj.time
-		if time_left_normalized > 0 and \
-				time_left_normalized < depth and depth < time_left_normalized + 0.3:
+		if proj.time_left_normalized > 0 and \
+				proj.time_left_normalized < depth and depth < proj.time_left_normalized + 0.3:
 			print("Damage! OUCHIE! SPLAT")
 			proj.queue_free()
 			break

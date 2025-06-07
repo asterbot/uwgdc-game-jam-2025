@@ -14,7 +14,7 @@ var can_shoot: bool = true
 var projectiles_node
 
 func _ready() -> void:
-	pass
+	self.z_index = Globals.NUM_Z_INDICES*10; # draw on top of EVERYTHING
 
 func _process(delta: float) -> void:
 	mouse_pos = get_local_mouse_position()

@@ -6,6 +6,8 @@ var target_depth: float # number of seconds to reach target, to be written to up
 @onready var timer = $ReachTargetTimer
 
 var time: float
+var time_left_normalized: float
+
 
 var d_x: float
 var vf_x: float = 50
@@ -54,6 +56,9 @@ func _process(delta: float) -> void:
 	velocity.x += a_x*delta
 	velocity.y += a_y*delta
 	move_and_slide()
+	
+	time_left_normalized = timer.time_left/time
+	self.z_index = floor(time_left_normalized*Globals.NUM_Z_INDICES)
 
 
 func _on_reach_target_timer_timeout() -> void:
