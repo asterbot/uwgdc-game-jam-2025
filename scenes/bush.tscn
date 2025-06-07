@@ -1,8 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://b70ahmxlos2kj"]
+[gd_scene load_steps=4 format=3 uid="uid://b70ahmxlos2kj"]
 
+[ext_resource type="Script" path="res://scenes/bush.gd" id="1_llw4d"]
 [ext_resource type="Texture2D" uid="uid://c5qo1vhba13x2" path="res://assets/bush.png" id="1_o8wgp"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2a8n"]
+size = Vector2(117, 73)
+
 [node name="Bush" type="Node2D"]
+script = ExtResource("1_llw4d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_o8wgp")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -11.5)
+shape = SubResource("RectangleShape2D_o2a8n")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
