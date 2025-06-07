@@ -32,8 +32,12 @@ func _process(delta: float) -> void:
 	cannon_sprite.position = Vector2(
 		# x-coord uses frame-agnositc lerp smoothing, source: https://youtu.be/LSNQuFEDOyQ?t=2921
 		mouse_pos.x + (cannon_pos.x - mouse_pos.x)*exp(-5*delta),
-		viewport_size.y
+		viewport_size.y - 60
 	)
+	
+	# Set cannon to point at cursor
+	var diff_vector : Vector2 = (cursor_sprite.global_position - cannon_sprite.global_position).normalized()
+	cannon_sprite.rotation = diff_vector.angle() + PI/2
 
 
 func _input(event: InputEvent):

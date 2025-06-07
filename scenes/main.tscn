@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnrkqfb11gtlu"]
+[gd_scene load_steps=5 format=3 uid="uid://dnrkqfb11gtlu"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_e7st0"]
+[ext_resource type="PackedScene" uid="uid://did6iwr131182" path="res://scenes/stage.tscn" id="2_nce7u"]
 [ext_resource type="PackedScene" uid="uid://2mf33gict135" path="res://scenes/player/player.tscn" id="2_nij8n"]
 [ext_resource type="PackedScene" uid="uid://gtiygoqo12t1" path="res://scenes/cat_enemies/test_cat/test_cat.tscn" id="3_jy5we"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_e7st0")
 metadata/_edit_lock_ = true
+
+[node name="Stage" parent="." instance=ExtResource("2_nce7u")]
 
 [node name="Enemies" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
