@@ -15,9 +15,9 @@ var a_x: float
 var vi_x: float
 
 var d_y: float
-var vf_y : float = -100	# final velocity at target
+var vf_y : float = -100 # final velocity at target
 var a_y : float			# acceleration to reach target
-var vi_y : float			# initial velocity to reach target
+var vi_y : float		# initial velocity to reach target
 ## NOTE: u,a calculated from v, T and displacement in _ready()
 
 # d = vi*t + (1/2)*a*t^2

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://xdvp87f7qsh5"]
 
 [ext_resource type="Script" path="res://scenes/cutscene.gd" id="1_xqrxb"]
-[ext_resource type="Texture2D" uid="uid://ycs7fp4dmbx3" path="res://icon.svg" id="2_1uen7"]
-[ext_resource type="FontFile" uid="uid://c0e34avfpfc2" path="res://assets/tinypixel.otf" id="2_11kl6"]
+[ext_resource type="Texture2D" uid="uid://c3ttd8x15c6ai" path="res://icon.svg" id="2_1uen7"]
+[ext_resource type="FontFile" uid="uid://cb0i2ug0apuy4" path="res://assets/tinypixel.otf" id="2_11kl6"]
 
 [node name="Cutscene" type="CanvasLayer"]
 script = ExtResource("1_xqrxb")
