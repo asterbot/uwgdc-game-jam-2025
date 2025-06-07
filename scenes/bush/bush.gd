@@ -9,7 +9,7 @@ var viewport_size: Vector2
 func _ready() -> void:
 	viewport_size = get_viewport().get_visible_rect().size
 	depth = position.y/viewport_size.y
-	self.scale = Vector2(depth*1.5, depth*1.5)
+	self.scale = Vector2(depth*2, depth*2)
 	
 	self.z_index = floor(depth*Globals.NUM_Z_INDICES)
 

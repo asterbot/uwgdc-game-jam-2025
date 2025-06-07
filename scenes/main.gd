@@ -3,12 +3,12 @@ extends Node2D
 @onready var projectiles_node = %Projectiles
 @onready var player_node = %Player
 
-var bush_scene: PackedScene = preload("res://scenes/bush.tscn")
+var bush_scene: PackedScene = preload("res://scenes/bush/bush.tscn")
 var cat_scene: PackedScene = preload("res://scenes/cat_enemies/cat.tscn")
 
 
 func choose_random_numbers(lower: int, upper: int, n: int, min_gap: int = 40) -> Array:
-	"""Returns n numbers in range [lower,upper] with at least min_gap between all of them"""
+	"""Returns n random numbers in range [lower,upper] with at least min_gap between all of them"""
 	
 	var max_possible = floor((upper - lower) / min_gap) + 1 # max qty numbers that may exist
 	if n > max_possible:
@@ -21,19 +21,18 @@ func choose_random_numbers(lower: int, upper: int, n: int, min_gap: int = 40) ->
 	possible_positions.shuffle()
 	return possible_positions.slice(0, n) # take first n numbers after shuffling
 
-func spawn_entities_random(entity_scene: PackedScene, folder: Node2D ,n: int, z_index: int=10):
+func spawn_entities_random(entity_scene: PackedScene, folder: Node2D ,n: int):
 	"""Spawn n random instances of entity_scene in folder of main with given z_index (default 10)"""
 	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	var width = viewport_size.x
 	var height = viewport_size.y
 	
 	# These ranges should roughly be the places in the field
-	var entity_positions_y = choose_random_numbers(height/2,height-200,n)
+	var entity_positions_y = choose_random_numbers(height/2,height-200, n, 80)
 	var entity_positions_x = choose_random_numbers(40, width-40, n)
 	for i in range(n):
 		var entity = entity_scene.instantiate()
 		entity.position = Vector2(entity_positions_x[i], entity_positions_y[i])
-		entity.z_index = z_index
 		folder.add_child(entity)
 	
 

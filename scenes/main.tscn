@@ -8,10 +8,10 @@
 script = ExtResource("1_e7st0")
 metadata/_edit_lock_ = true
 
+[node name="Bushes" type="Node2D" parent="."]
+
 [node name="Enemies" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
-
-[node name="Bushes" type="Node2D" parent="."]
 
 [node name="Stage" parent="." instance=ExtResource("2_nce7u")]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://did6iwr131182"]
 
-[ext_resource type="Texture2D" uid="uid://buqokf3blfkrm" path="res://assets/background.png" id="1_gafqd"]
+[ext_resource type="Texture2D" uid="uid://buqokf3blfkrm" path="res://assets/stage/background.png" id="1_gafqd"]
 
 [node name="Stage" type="CanvasLayer"]
 

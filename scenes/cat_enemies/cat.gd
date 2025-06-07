@@ -7,19 +7,20 @@ var depth: float
 
 var viewport_size: Vector2
 
-var velocity_x = 100
+var velocity_x = randf_range(300,350)
 
 var color_options = {
 	"default": Color(1,1,1),
 	"red": Color(1,0,1),
 	"green": Color(0,1,1),
 	"devil": Color(1, 0.5, 1)
-	
 }
 
 func _ready() -> void:
 	random_modulate()
-	pass
+	viewport_size = get_viewport().get_visible_rect().size
+	depth = position.y/viewport_size.y
+	velocity_x *= depth
 	
 func _process(_delta: float) -> void:
 	# set scale based on depth (i.e by y-coord)
@@ -29,8 +30,7 @@ func _process(_delta: float) -> void:
 	depth = position.y/viewport_size.y
 	self.scale = Vector2(depth, depth)
 	
-	self.z_index = floor(depth*Globals.NUM_Z_INDICES - 1)
-	
+	self.z_index = floor(depth*Globals.NUM_Z_INDICES)
 	
 	for proj in projectiles_in_range:
 		if proj.time_left_normalized > 0 and \

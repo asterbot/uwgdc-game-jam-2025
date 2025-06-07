@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://gsj0vwdpsop1"]
 
 [ext_resource type="Script" path="res://scenes/cat_enemies/cat.gd" id="1_xxoqr"]
-[ext_resource type="Texture2D" uid="uid://fkq8by2hgs8g" path="res://assets/cat_dance.png" id="2_i7bu5"]
+[ext_resource type="Texture2D" uid="uid://fkq8by2hgs8g" path="res://assets/cat_enemy/cat_dance.png" id="2_i7bu5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1a1mo"]
 size = Vector2(180, 179)
@@ -48,6 +48,7 @@ _data = {
 }
 
 [node name="Cat" type="CharacterBody2D"]
+position = Vector2(0, -85)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_xxoqr")
@@ -73,7 +74,7 @@ shape = SubResource("RectangleShape2D_pbcep")
 libraries = {
 "": SubResource("AnimationLibrary_o2rtb")
 }
-speed_scale = 1.964
+speed_scale = 3.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
