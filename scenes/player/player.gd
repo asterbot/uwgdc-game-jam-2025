@@ -26,26 +26,23 @@ func _process(delta: float) -> void:
 		clamp(mouse_pos.x, 0, viewport_size.x),
 		clamp(mouse_pos.y, 0, viewport_size.y)
 	)
-	var cursor_sprite_scale: float = 0.5 + mouse_pos.y/viewport_size.y
+	var cursor_sprite_scale: float = 0.5 + 1.5*(mouse_pos.y/viewport_size.y)
 	cursor_sprite.scale = Vector2(cursor_sprite_scale, cursor_sprite_scale)
 	# cannon follows the cursor, always at bottom of screen
 	cannon_sprite.position = Vector2(
 		# x-coord uses frame-agnositc lerp smoothing, source: https://youtu.be/LSNQuFEDOyQ?t=2921
 		mouse_pos.x + (cannon_pos.x - mouse_pos.x)*exp(-5*delta),
-		viewport_size.y - 60
+		viewport_size.y
 	)
 	
 	# Set cannon to point at cursor
 	var diff_vector : Vector2 = (cursor_sprite.global_position - cannon_sprite.global_position).normalized()
 	cannon_sprite.rotation = diff_vector.angle() + PI/2
 
-
-func _input(event: InputEvent):
-	if event is InputEventMouseButton and Input.is_action_pressed("shoot"):
-		if can_shoot:
+	if Input.is_action_pressed("shoot") and can_shoot:
 			var new_projectile = projectile_scene.instantiate()
 			new_projectile.start_pos = %ProjectileSpawnPos.global_position
-			new_projectile.mouse_pos = event.position
+			new_projectile.mouse_pos = mouse_pos
 			new_projectile.target_depth = mouse_pos.y/viewport_size.y
 			projectiles_node.add_child(new_projectile)
 			can_shoot = false

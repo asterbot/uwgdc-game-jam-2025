@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://c3kbchou6qub7"]
 
-[ext_resource type="Script" path="res://intro.gd" id="1_svnfr"]
+[ext_resource type="Script" path="res://scenes/intro/intro.gd" id="1_jqs8q"]
 
 [node name="Intro" type="CanvasLayer"]
-script = ExtResource("1_svnfr")
+script = ExtResource("1_jqs8q")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15

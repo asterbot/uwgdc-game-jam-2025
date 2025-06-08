@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://47bpw4afrhwf"]
+
+[ext_resource type="PackedScene" uid="uid://dnrkqfb11gtlu" path="res://scenes/main/main.tscn" id="1_xe167"]
+
+[node name="SceneTree" type="Node"]
+
+[node name="CurrentScene" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Main" parent="CurrentScene" instance=ExtResource("1_xe167")]
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="SFX"]

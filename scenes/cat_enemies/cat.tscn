@@ -1,13 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://gsj0vwdpsop1"]
+[gd_scene load_steps=12 format=3 uid="uid://gsj0vwdpsop1"]
 
 [ext_resource type="Script" path="res://scenes/cat_enemies/cat.gd" id="1_xxoqr"]
-[ext_resource type="Texture2D" uid="uid://fkq8by2hgs8g" path="res://assets/cat_enemy/cat_dance.png" id="2_i7bu5"]
+[ext_resource type="Texture2D" uid="uid://bk3wb87fgbxbg" path="res://assets/cat_enemy/cat_dance.png" id="2_i7bu5"]
+[ext_resource type="Texture2D" uid="uid://db051d7nffoxe" path="res://assets/stink_lines.png" id="3_3et5w"]
+[ext_resource type="Shader" path="res://scenes/cat_enemies/stink_line.gdshader" id="3_4y1rc"]
+[ext_resource type="Texture2D" uid="uid://dinp4xqfgaqyo" path="res://assets/stink_particle.png" id="3_o77p8"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jwgrq"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 60.0
+direction = Vector3(0, -1, 0)
+spread = 60.0
+initial_velocity_min = 150.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 98, 0)
+turbulence_noise_strength = 12.89
+turbulence_noise_scale = 1.26
+sub_emitter_mode = 1
+sub_emitter_frequency = 57.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cpmyx"]
+resource_local_to_scene = true
+shader = ExtResource("3_4y1rc")
+shader_parameter/final_alpha = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1a1mo"]
-size = Vector2(180, 179)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbcep"]
-size = Vector2(181, 180)
+size = Vector2(112, 118.5)
 
 [sub_resource type="Animation" id="Animation_q67i7"]
 length = 0.001
@@ -48,27 +67,35 @@ _data = {
 }
 
 [node name="Cat" type="CharacterBody2D"]
-position = Vector2(0, -85)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_xxoqr")
+metadata/_edit_lock_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -100)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_jwgrq")
+texture = ExtResource("3_o77p8")
+randomness = 1.0
+
+[node name="StinkLines" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cpmyx")
+position = Vector2(0, -200)
+texture = ExtResource("3_3et5w")
 
 [node name="CatSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -85)
 texture = ExtResource("2_i7bu5")
 hframes = 3
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -5.5)
+position = Vector2(-1, -83.75)
 shape = SubResource("RectangleShape2D_1a1mo")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-0.5, -6)
-shape = SubResource("RectangleShape2D_pbcep")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

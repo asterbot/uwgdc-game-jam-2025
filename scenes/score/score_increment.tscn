@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy4ebey1veatj"]
+
+[ext_resource type="FontFile" uid="uid://c0e34avfpfc2" path="res://assets/tinypixel.otf" id="1_hj0jg"]
+[ext_resource type="Script" path="res://scenes/score/score_increment.gd" id="2_f74ek"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lk4o8"]
+font = ExtResource("1_hj0jg")
+font_size = 30
+
+[node name="ScoreIncrement" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+label_settings = SubResource("LabelSettings_lk4o8")
+script = ExtResource("2_f74ek")
+
+[node name="DespawnTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DespawnTimer" to="." method="_on_despawn_timer_timeout"]

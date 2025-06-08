@@ -8,7 +8,11 @@ func _ready() -> void:
 	pass
 
 func _process(_delta: float) -> void:
-	pass
+	var viewport_size = get_viewport().get_visible_rect()
+	var textbox_area = viewport_size.get_area()/3
+	cutscene_text_node.add_theme_font_size_override(
+		"normal_font_size", textbox_area/10000
+	)
 
 func set_image(img_packed_scene: Texture2D) -> void:
 	cutscene_image_node.texture = img_packed_scene

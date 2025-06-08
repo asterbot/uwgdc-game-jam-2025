@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dnrkqfb11gtlu"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_e7st0"]
+[ext_resource type="PackedScene" uid="uid://did6iwr131182" path="res://scenes/main/stage.tscn" id="2_nce7u"]
+[ext_resource type="PackedScene" uid="uid://2mf33gict135" path="res://scenes/player/player.tscn" id="2_nij8n"]
+[ext_resource type="PackedScene" uid="uid://c1nk63qrnbh4t" path="res://scenes/score/score.tscn" id="4_4r0yu"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_e7st0")
+metadata/_edit_lock_ = true
+
+[node name="Stage" parent="." instance=ExtResource("2_nce7u")]
+layer = 0
+
+[node name="Enemies" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Bushes" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+unique_name_in_owner = true
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_nij8n")]
+unique_name_in_owner = true
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Score" parent="." instance=ExtResource("4_4r0yu")]
+unique_name_in_owner = true
+
+[connection signal="child_entered_tree" from="Projectiles" to="." method="_on_projectiles_child_entered_tree"]
