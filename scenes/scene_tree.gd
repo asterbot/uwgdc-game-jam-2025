@@ -3,8 +3,8 @@ extends Node
 @onready var intro_scene = preload("res://scenes/intro/intro.tscn")
 @onready var game_scene = preload("res://scenes/main/main.tscn")
 
-var intro_music = preload("res://assets/intro.mp3")
-var game_music # not done yet
+var intro_music = preload("res://assets/music/intro.mp3")
+var game_music = preload("res://assets/music/game.mp3")
 @onready var music_node = %Music
 @onready var current_scene_node = %CurrentScene
 

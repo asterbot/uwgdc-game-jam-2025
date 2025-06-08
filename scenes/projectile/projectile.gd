@@ -15,6 +15,7 @@ var depth: float
 var has_hit: bool = false
 var cats_in_range = []
 var obstacles_in_range = []
+var balloons_in_range = []
 
 var d_x: float
 var vf_x: float = 50
@@ -33,11 +34,12 @@ var vi_y : float		# initial velocity to reach target
 # d = (vi+vf)*t/2 
 
 signal notify_cat_hit(points) # tells the Score node that a cat is hit, and how many points
+signal notify_balloon_hit(points) 
 
 func _ready() -> void:
 	print("PROJECTILE TARGET DEPTH: ", target_depth)
 	$Area2D.collision_layer = Globals.PROJECTILE_LAYER
-	$Area2D.collision_mask = Globals.CAT_LAYER + Globals.OBSTACLE_LAYER
+	$Area2D.collision_mask = Globals.CAT_LAYER + Globals.OBSTACLE_LAYER + Globals.BALLOON_LAYER
 	
 	time = 0.0 + (1 - target_depth)
 	
@@ -87,28 +89,36 @@ func _process(delta: float) -> void:
 		# find which obstacle/cat is eligible to be hit (i.e. greatest z_index)
 		obstacles_in_range.sort_custom(func(node1, node2): return node1.z_index > node2.z_index)
 		cats_in_range.sort_custom(func(node1, node2): return node1.z_index > node2.z_index)
+		balloons_in_range.sort_custom(func(node1, node2): return node1.z_index > node2.z_index)
 		
-		if len(obstacles_in_range) == 0 and len(cats_in_range) == 0: # no obstacles or cats to be hit
-			pass
-		elif len(obstacles_in_range) > 0 and len(cats_in_range) == 0: # only obstacles are eligible to be hit
-			print("ONLY OBSTACLE HIT")
+		if (len(balloons_in_range)>0):
+			var eligible_balloon = balloons_in_range[0]
+			eligible_balloon.drop_cat()
+			emit_signal("notify_balloon_hit", 300)
 			destroy()
-		elif len(obstacles_in_range) == 0 and len(cats_in_range) > 0: # only cats are eligible to be hit, pick first one
-			print("ONLY CAT HIT")
-			emit_signal("notify_cat_hit", 100)
-			cats_in_range[0].destroy()
-			destroy()
-		else: # else, choose the closest node each kind
-			var eligible_obstacle = obstacles_in_range[0]
-			var eligible_cat = cats_in_range[0]
-			if eligible_cat.z_index > eligible_obstacle.z_index: # if cat is in front of obstacle, hit the cat
-				print("FRONT CAT HIT")
-				emit_signal("notify_cat_hit", 100)
+		
+		else:
+			if len(obstacles_in_range) == 0 and len(cats_in_range) == 0: # no obstacles or cats to be hit
+				pass
+			elif len(obstacles_in_range) > 0 and len(cats_in_range) == 0: # only obstacles are eligible to be hit
+				print("ONLY OBSTACLE HIT")
+				destroy()
+			elif len(obstacles_in_range) == 0 and len(cats_in_range) > 0: # only cats are eligible to be hit, pick first one
+				print("ONLY CAT HIT")
+				emit_signal("notify_cat_hit", 100 if !cats_in_range[0].has_balloon else 200)
 				cats_in_range[0].destroy()
 				destroy()
-			else:
-				print("FRONT OBSTACLE HIT")
-				destroy()
+			else: # else, choose the closest node each kind
+				var eligible_obstacle = obstacles_in_range[0]
+				var eligible_cat = cats_in_range[0]
+				if eligible_cat.z_index > eligible_obstacle.z_index: # if cat is in front of obstacle, hit the cat
+					print("FRONT CAT HIT")
+					emit_signal("notify_cat_hit", 100 if !eligible_cat.has_balloon else 200)
+					cats_in_range[0].destroy()
+					destroy()
+				else:
+					print("FRONT OBSTACLE HIT")
+					destroy()
 		
 		# delete if obstacle is in the way
 	else:
@@ -136,9 +146,15 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		cats_in_range.append(area.get_parent())
 	elif (area.collision_layer == Globals.OBSTACLE_LAYER):
 		obstacles_in_range.append(area.get_parent())
+	elif (area.collision_layer == Globals.BALLOON_LAYER):
+		balloons_in_range.append(area.get_parent())
+	
+	
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
 	if (area.collision_layer == Globals.CAT_LAYER):
 		cats_in_range.erase(area.get_parent())
 	elif (area.collision_layer == Globals.OBSTACLE_LAYER):
 		obstacles_in_range.erase(area.get_parent())
+	elif (area.collision_layer == Globals.BALLOON_LAYER):
+		balloons_in_range.erase(area.get_parent())

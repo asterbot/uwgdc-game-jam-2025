@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbjpgdw6is5fr"]
+
+[ext_resource type="Texture2D" uid="uid://ds1r3b421j3jm" path="res://assets/cat_enemy/balloon.png" id="1_g6imm"]
+[ext_resource type="Script" path="res://scenes/cat_enemies/balloon.gd" id="1_v4baj"]
+
+[node name="Balloon" type="CharacterBody2D"]
+script = ExtResource("1_v4baj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7, -171.3)
+texture = ExtResource("1_g6imm")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(39, -355.3)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(11, -7, 35, 15, 42, 57, 42, 107, 28, 132, -21, 131, -57, 115, -72, 70, -80, 29, -56, -3)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(41, -354.3)
+polygon = PackedVector2Array(11, -7, 35, 15, 42, 57, 42, 107, 28, 132, -21, 131, -57, 115, -72, 70, -80, 29, -56, -3)
