@@ -30,7 +30,7 @@ extends CanvasLayer
 	5: {
 		"image": preload("res://assets/cutscenes/cutscene_5.png"),
 		"text": "Get as many as you can with your deodorant cannon! The city depends on it!",
-		"timer": 10.5
+		"timer": 4.5
 	},
 }
 
