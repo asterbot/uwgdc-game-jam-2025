@@ -30,7 +30,7 @@ extends CanvasLayer
 	5: {
 		"image": preload("res://assets/cutscenes/cutscene_5.png"),
 		"text": "Get as many as you can with your deodorant cannon! The city depends on it!",
-		"timer": 4.5
+		"timer": 10.5
 	},
 }
 
@@ -87,6 +87,8 @@ func _on_cutscene_swap_timer_timeout() -> void:
 		tween = modulate_cutscene(1.0)
 		await tween.finished
 		set_up_timer(curr_cutscene_index)
-	else:
-		# transition to gameplay scene?
-		pass
+	else: # go to gameplay scene
+		var transition_tween = create_tween()
+		transition_tween.tween_property(Globals, "transition_alpha", 1.0, 1.0)
+		await transition_tween.finished
+		queue_free()

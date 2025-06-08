@@ -1,5 +1,7 @@
 extends Node
 
+var transition_alpha = 0.0
+
 var NUM_Z_INDICES = 100
 
 var NO_LAYER = 0b0000
