@@ -65,7 +65,7 @@ func _process(_delta: float) -> void:
 	else:
 		self.z_index = Globals.NUM_Z_INDICES + 1 # make death animation visible above everything
 	
-	if (!is_dropping):
+	if (!is_dropping or dying):
 		velocity = raw_velocity * depth
 	else:
 		velocity = Vector2(0,300)

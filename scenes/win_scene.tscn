@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bns0yq41nu0vt"]
 
-[ext_resource type="FontFile" uid="uid://c0e34avfpfc2" path="res://assets/tinypixel.otf" id="1_pr8et"]
+[ext_resource type="FontFile" uid="uid://cb0i2ug0apuy4" path="res://assets/tinypixel.otf" id="1_pr8et"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xcjww"]
 font = ExtResource("1_pr8et")
