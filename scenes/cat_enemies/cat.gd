@@ -11,26 +11,28 @@ var dying: bool = false
 
 @onready var stink_line_material = $StinkLines.material
 var stink_final_alpha: float = 1.0
+@onready var cat_colour_material = $CatSprite.material
 
 var color_options = {
-	"default": Color(1,1,1),
-	"red": Color(1,0,1),
-	"green": Color(0,1,1),
-	"devil": Color(1, 0.5, 1)
+	"orange": load("res://assets/cat_enemy/palette_1.png")
 }
+
 
 func _ready() -> void:
 	$Area2D.collision_layer = Globals.CAT_LAYER
 	$Area2D.collision_mask = Globals.NO_LAYER
 	
-	random_modulate()
+	var colors_map_size = color_options.size()
+	var random_key = color_options.keys()[randi() % colors_map_size]
+	cat_colour_material.set_shader_parameter("palette", color_options[random_key])
+	
+	
 	viewport_size = get_viewport().get_visible_rect().size
 	depth = position.y/viewport_size.y
 	raw_velocity.x = randf_range(400, 600) * [-1, 1].pick_random()
 	
 	stink_line_material.set_shader_parameter("final_alpha", stink_final_alpha)
 	
-
 
 func _process(_delta: float) -> void:
 	# set scale based on depth (i.e by y-coord)
@@ -54,11 +56,6 @@ func _process(_delta: float) -> void:
 		raw_velocity.x = abs(raw_velocity.x)
 	elif (position.x > get_viewport().get_visible_rect().size.x - 10):
 		raw_velocity.x = -abs(raw_velocity.x)
-
-func random_modulate():
-	var colors_size = color_options.size()
-	var random_key  = color_options.keys()[randi() % colors_size]
-	$CatSprite.modulate = color_options[random_key]
 
 func destroy() -> void:
 	dying = true
