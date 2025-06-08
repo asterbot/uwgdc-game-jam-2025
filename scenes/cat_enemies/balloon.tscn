@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bbjpgdw6is5fr"]
 
-[ext_resource type="Texture2D" uid="uid://u2ocqui8pxv8" path="res://assets/cat_enemy/balloon.png" id="1_g6imm"]
+[ext_resource type="Texture2D" uid="uid://ds1r3b421j3jm" path="res://assets/cat_enemy/balloon.png" id="1_g6imm"]
 [ext_resource type="Script" path="res://scenes/cat_enemies/balloon.gd" id="1_v4baj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tnipk"]

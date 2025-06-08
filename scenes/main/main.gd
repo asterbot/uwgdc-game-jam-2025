@@ -8,10 +8,15 @@ var bush_scene: PackedScene = preload("res://scenes/bush/bush.tscn")
 var cat_scene: PackedScene = preload("res://scenes/cat_enemies/cat.tscn")
 var balloon_scene: PackedScene = preload("res://scenes/cat_enemies/balloon.tscn")
 
+var win_scene: PackedScene = preload("res://scenes/win_scene.tscn")
+@onready var win_screen = win_scene.instantiate()
+
 var viewport_size: Vector2
 
 var can_spawn = true
 var enemy_queue: Array = []
+
+var game_over: bool = false
 
 func spawn_entities_random(entity_scene: PackedScene, folder: Node2D ,n: int, 
 				off_screen: bool = false, use_timer: bool = false, with_balloon: bool = false):
@@ -85,6 +90,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	viewport_size = get_viewport().get_visible_rect().size
 	
+	if Input.is_action_pressed("restart") and game_over:
+		Globals.cur_wave = -1
+		new_wave()
+		remove_child(win_screen)
+		game_over = false
+		Globals.score=0
+
 	if (!enemy_queue.is_empty() and can_spawn):
 		var enemy = enemy_queue.pop_front()
 		$Enemies.add_child(enemy)
@@ -99,12 +111,14 @@ func _process(delta: float) -> void:
 			child.destroy()
 		
 		if (Globals.cur_wave >= Globals.NUM_WAVES - 1):
-			# TODO: Win screen
+			if (!game_over):
+				add_child(win_screen)
+			game_over=true
 			return
 		
 		# Instantiate new wave
 		new_wave()
-
+	
 
 func _on_projectiles_child_entered_tree(projectile: CharacterBody2D) -> void:
 	# when projectile enters this folder, connect its signal to it
