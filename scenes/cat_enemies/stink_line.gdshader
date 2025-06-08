@@ -13,4 +13,3 @@ void fragment() {
 	
 	 COLOR = vec4(color.rgb, color.a * final_alpha);
 }
-

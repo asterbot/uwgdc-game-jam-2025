@@ -60,7 +60,7 @@ func _ready() -> void:
 	new_wave()
 
 func _process(delta: float) -> void:
-	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	viewport_size = get_viewport().get_visible_rect().size
 
 
 func _on_projectiles_child_entered_tree(projectile: CharacterBody2D) -> void:

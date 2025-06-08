@@ -10,11 +10,11 @@ extends CanvasLayer
 	1: {
 		"image": preload("res://assets/cutscenes/cutscene_1.png"),
 		"text": "These past few weeks have witnessed the dire SCE (Stinky Cat Epidemic) event.",
-		"timer": 5
+		"timer": 5.5
 	},
 	2: {
 		"image": preload("res://assets/cutscenes/cutscene_2.png"),
-		"text": "The citizens are being tormented by these cats, and it's been worsening by the day. So that's where it comes to you.",
+		"text": "The citizens are being tormented by these cats, and it's been worsening by the day. So that's where you come in.",
 		"timer": 6
 	},
 	3: {
@@ -29,8 +29,8 @@ extends CanvasLayer
 	},
 	5: {
 		"image": preload("res://assets/cutscenes/cutscene_5.png"),
-		"text": "Go smack them with your deodorant cannon! The city depends on it!",
-		"timer": 4
+		"text": "Go get them with your deodorant cannon! The city depends on it!",
+		"timer": 4.5
 	},
 }
 
@@ -48,21 +48,21 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func set_up_timer(curr_cutscene_index):
-	$CutsceneSwapTimer.wait_time = cutscene_data[curr_cutscene_index]["timer"]
+func set_up_timer(_curr_cutscene_index):
+	$CutsceneSwapTimer.wait_time = cutscene_data[_curr_cutscene_index]["timer"]
 	$CutsceneSwapTimer.start()
 
 
-func create_cutscene(curr_cutscene_index) -> void:
+func create_cutscene(_curr_cutscene_index) -> void:
 	curr_cutscene = cutscene_scene.instantiate()
 	add_child(curr_cutscene)
-	var curr_cutscene_data: Dictionary = cutscene_data[curr_cutscene_index]
+	var curr_cutscene_data: Dictionary = cutscene_data[_curr_cutscene_index]
 	if curr_cutscene_data.has("image"):
-		curr_cutscene.set_image(cutscene_data[curr_cutscene_index]["image"])
+		curr_cutscene.set_image(cutscene_data[_curr_cutscene_index]["image"])
 	else:
 		curr_cutscene.set_image(null)
 	if curr_cutscene_data.has("text"):
-		curr_cutscene.set_text(cutscene_data[curr_cutscene_index]["text"])
+		curr_cutscene.set_text(cutscene_data[_curr_cutscene_index]["text"])
 	else:
 		curr_cutscene.set_text("")
 	curr_cutscene.cutscene_image_node.modulate.a = 0.0
