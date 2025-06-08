@@ -12,6 +12,10 @@ var dying: bool = false
 @onready var stink_line_material = $StinkLines.material
 var stink_final_alpha: float = 1.0
 
+var num_bounces = 0
+
+var can_bounce = false
+
 var color_options = {
 	"default": Color(1,1,1),
 	"red": Color(1,0,1),
@@ -49,11 +53,20 @@ func _process(_delta: float) -> void:
 	velocity = raw_velocity * depth
 	move_and_slide()
 	
+	if (position.x >= -70 and position.x <= viewport_size.x + 70):
+		# If it's in the playing field, it can bounce
+		can_bounce = true
+	
 	# If out of bounds, bounce back in
-	if (position.x < 10):
+	if (position.x < -70):
 		raw_velocity.x = abs(raw_velocity.x)
-	elif (position.x > get_viewport().get_visible_rect().size.x - 10):
+		if (can_bounce): num_bounces+=1
+	elif (position.x > viewport_size.x + 70):
 		raw_velocity.x = -abs(raw_velocity.x)
+		if (can_bounce): num_bounces+=1
+	
+	if (num_bounces > Globals.ALLOWED_BOUNCES):
+		destroy()
 
 func random_modulate():
 	var colors_size = color_options.size()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c1nk63qrnbh4t"]
 
 [ext_resource type="Script" path="res://scenes/score/score_display.gd" id="1_l47me"]
-[ext_resource type="FontFile" uid="uid://c0e34avfpfc2" path="res://assets/tinypixel.otf" id="2_cab8j"]
+[ext_resource type="FontFile" uid="uid://cb0i2ug0apuy4" path="res://assets/tinypixel.otf" id="2_cab8j"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_55tte"]
 font = ExtResource("2_cab8j")
@@ -28,6 +28,12 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 0
+
+[node name="WaveLabel" type="Label" parent="MarginContainer/Scores"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Wave: 1
+"
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer/Scores"]
 layout_mode = 2

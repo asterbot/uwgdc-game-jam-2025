@@ -18,7 +18,7 @@ func _ready() -> void:
 	self.modulate.a = 0.0
 	$Area2D/CollisionPolygon2D.disabled = true
 	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 1.0, 0.25)
+	tween.tween_property(self, "modulate:a", 1.0, 0.5)
 	await tween.finished
 	$Area2D/CollisionPolygon2D.disabled = false
 
@@ -30,6 +30,6 @@ func _process(delta: float) -> void:
 func destroy() -> void:
 	$Area2D/CollisionPolygon2D.disabled = true
 	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0.0, 0.1)
+	tween.tween_property(self, "modulate:a", 0.0, 0.5)
 	await tween.finished
 	queue_free()
