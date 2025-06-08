@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://47bpw4afrhwf"]
+[gd_scene load_steps=3 format=3 uid="uid://47bpw4afrhwf"]
 
 [ext_resource type="Script" path="res://scenes/scene_tree.gd" id="1_mtlov"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c52lv"]
+bg_color = Color(0, 0.668371, 0.933582, 1)
 
 [node name="SceneTree" type="Node"]
 script = ExtResource("1_mtlov")
@@ -12,3 +15,17 @@ unique_name_in_owner = true
 
 [node name="Music" type="AudioStreamPlayer" parent="SFX"]
 unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TransitionLayer" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c52lv")
+
+[connection signal="child_exiting_tree" from="CurrentScene" to="." method="_on_current_scene_child_exiting_tree"]
+[connection signal="finished" from="SFX/Music" to="." method="_on_music_finished"]
