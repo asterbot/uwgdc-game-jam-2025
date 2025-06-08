@@ -23,7 +23,12 @@ var num_bounces = 0
 var can_bounce = false
 
 var color_options = {
-	"orange": load("res://assets/cat_enemy/palette_1.png")
+	"red": load("res://assets/cat_enemy/palettes/red_palette.png"),
+	"orange": load("res://assets/cat_enemy/palettes/orange_palette.png"),
+	"yellow": load("res://assets/cat_enemy/palettes/yellow_palette.png"),
+	"green": load("res://assets/cat_enemy/palettes/green_palette.png"),
+	"blue": load("res://assets/cat_enemy/palettes/blue_palette.png"),
+	"purple": load("res://assets/cat_enemy/palettes/purple_palette.png"),
 }
 
 
@@ -38,7 +43,7 @@ func _ready() -> void:
 	
 	viewport_size = get_viewport().get_visible_rect().size
 	depth = position.y/viewport_size.y
-	raw_velocity.x = randf_range(400, 600) * [-1, 1].pick_random()
+	raw_velocity.x = randf_range(400, 650) * [-1, 1].pick_random()
 	
 	stink_line_material.set_shader_parameter("final_alpha", stink_final_alpha)
 	

@@ -13,4 +13,7 @@ func increment_score(points: float):
 	Globals.score += points
 	var new_score_increment_label = score_increment_label.instantiate()
 	new_score_increment_label.text = "+ " + str(points)
+	for i in range(int(floor(points-100)/100)):
+		new_score_increment_label.text += "!"
+	new_score_increment_label.label_settings.font_size = 25 + 0.1*(points)
 	%Scores.add_child(new_score_increment_label)

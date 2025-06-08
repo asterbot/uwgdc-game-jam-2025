@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d4l6e2xeutopg"]
 
-[ext_resource type="Texture2D" uid="uid://i5fmpkpktvn3" path="res://assets/player/deodorant.png" id="1_gs5qr"]
+[ext_resource type="Texture2D" uid="uid://85ovrt2q8qmn" path="res://assets/player/deodorant.png" id="1_gs5qr"]
 [ext_resource type="Script" path="res://scenes/projectile/projectile.gd" id="1_we240"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6rykx"]
