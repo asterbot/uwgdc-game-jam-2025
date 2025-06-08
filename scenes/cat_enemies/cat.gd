@@ -37,10 +37,8 @@ func _ready() -> void:
 	
 	stink_line_material.set_shader_parameter("final_alpha", stink_final_alpha)
 	
-
 func _process(_delta: float) -> void:
 	# set scale based on depth (i.e by y-coord)
-	$AnimationPlayer.play("dance")
 	stink_line_material.set_shader_parameter("final_alpha", stink_final_alpha)
 	
 	viewport_size = get_viewport().get_visible_rect().size

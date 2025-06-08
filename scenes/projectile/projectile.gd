@@ -39,7 +39,7 @@ func _ready() -> void:
 	$Area2D.collision_layer = Globals.PROJECTILE_LAYER
 	$Area2D.collision_mask = Globals.CAT_LAYER + Globals.OBSTACLE_LAYER
 	
-	time = 0.2 + (1 - target_depth)
+	time = 0.0 + (1 - target_depth)
 	
 	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	position = Vector2(start_pos.x, viewport_size.y) # we shoot the projectile from here

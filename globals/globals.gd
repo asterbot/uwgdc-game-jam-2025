@@ -14,7 +14,7 @@ var WAVES = {
 	0: {
 		"cats": 3,
 		"bushes": 2,
-		"spawn_cooldown": 1
+		"spawn_cooldown": 5
 	},
 	1: {
 		"cats": 30,
