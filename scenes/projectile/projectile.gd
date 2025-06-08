@@ -39,7 +39,7 @@ func _ready() -> void:
 	$Area2D.collision_layer = Globals.PROJECTILE_LAYER
 	$Area2D.collision_mask = Globals.CAT_LAYER + Globals.OBSTACLE_LAYER
 	
-	time = 1 - target_depth
+	time = 0.2 + (1 - target_depth)
 	
 	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	position = Vector2(start_pos.x, viewport_size.y) # we shoot the projectile from here
@@ -124,8 +124,8 @@ func _on_reach_target_timer_timeout() -> void:
 	tween.tween_property(self, "scale", Vector2.ZERO, (total_uptime_scale-1)*time)
 	tween.tween_property(self, "modulate:a", 0.0, (total_uptime_scale-1)*time)
 	await tween.finished
-	queue_free()
 	print("PROJ DESTROYED")
+	queue_free()
 
 func destroy() -> void:
 	queue_free()
