@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://bns0yq41nu0vt"]
+
+[ext_resource type="FontFile" uid="uid://cb0i2ug0apuy4" path="res://assets/tinypixel.otf" id="1_pr8et"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xcjww"]
+font = ExtResource("1_pr8et")
+font_size = 50
+
+[node name="WinScene" type="CanvasLayer"]
+
+[node name="Labels" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+offset_left = 496.0
+offset_top = 392.0
+offset_right = 1103.0
+offset_bottom = 508.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Label1" type="Label" parent="Labels"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "GAME OVER	"
+label_settings = SubResource("LabelSettings_xcjww")
+
+[node name="Label2" type="Label" parent="Labels"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "PRESS 'R' TO RESTART
+"
+label_settings = SubResource("LabelSettings_xcjww")
