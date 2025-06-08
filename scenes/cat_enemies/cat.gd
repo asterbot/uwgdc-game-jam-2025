@@ -43,7 +43,7 @@ func _ready() -> void:
 	
 	viewport_size = get_viewport().get_visible_rect().size
 	depth = position.y/viewport_size.y
-	raw_velocity.x = randf_range(400, 650) * [-1, 1].pick_random()
+	raw_velocity.x = randf_range(450, 650) * [-1, 1].pick_random()
 	
 	stink_line_material.set_shader_parameter("final_alpha", stink_final_alpha)
 	
