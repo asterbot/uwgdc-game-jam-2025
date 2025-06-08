@@ -63,7 +63,7 @@ func random_modulate():
 func destroy() -> void:
 	dying = true
 	$Area2D/CollisionShape2D.disabled = true
-	raw_velocity = Vector2(0, -1600)
+	raw_velocity = Vector2(0, randf_range(-800, -2000))
 	var tween = create_tween()
 	tween.set_parallel()
 	tween.tween_property($GPUParticles2D, "modulate:a", 0.0, 0.5)

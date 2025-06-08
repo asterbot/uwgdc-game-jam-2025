@@ -12,7 +12,7 @@ var score = 0
 
 var WAVES = {
 	0: {
-		"cats": 300,
+		"cats": 10,
 		"bushes": 5
 	}
 }
