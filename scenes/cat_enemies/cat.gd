@@ -13,6 +13,10 @@ var dying: bool = false
 var stink_final_alpha: float = 1.0
 @onready var cat_colour_material = $CatSprite.material
 
+var num_bounces = 0
+
+var can_bounce = false
+
 var color_options = {
 	"orange": load("res://assets/cat_enemy/palette_1.png")
 }
@@ -33,10 +37,8 @@ func _ready() -> void:
 	
 	stink_line_material.set_shader_parameter("final_alpha", stink_final_alpha)
 	
-
 func _process(_delta: float) -> void:
 	# set scale based on depth (i.e by y-coord)
-	$AnimationPlayer.play("dance")
 	stink_line_material.set_shader_parameter("final_alpha", stink_final_alpha)
 	
 	viewport_size = get_viewport().get_visible_rect().size
@@ -51,11 +53,20 @@ func _process(_delta: float) -> void:
 	velocity = raw_velocity * depth
 	move_and_slide()
 	
+	if (position.x >= -70 and position.x <= viewport_size.x + 70):
+		# If it's in the playing field, it can bounce
+		can_bounce = true
+	
 	# If out of bounds, bounce back in
-	if (position.x < 10):
+	if (position.x < -70):
 		raw_velocity.x = abs(raw_velocity.x)
-	elif (position.x > get_viewport().get_visible_rect().size.x - 10):
+		if (can_bounce): num_bounces+=1
+	elif (position.x > viewport_size.x + 70):
 		raw_velocity.x = -abs(raw_velocity.x)
+		if (can_bounce): num_bounces+=1
+	
+	if (num_bounces > Globals.ALLOWED_BOUNCES):
+		destroy()
 
 func destroy() -> void:
 	dying = true

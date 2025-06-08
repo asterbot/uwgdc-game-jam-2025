@@ -7,6 +7,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	%Score.text = str(Globals.score)
+	%WaveLabel.text = "Wave " + str(Globals.cur_wave)
 
 func increment_score(points: float):
 	Globals.score += points
