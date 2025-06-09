@@ -15,10 +15,10 @@ var score = 0
 
 var WAVES = {
 	0: {
-		"ground_cats": 0,
-		"balloon_cats": 5,
+		"ground_cats": 4,
+		"balloon_cats": 0,
 		"bushes": 0,
-		"spawn_cooldown": 1
+		"spawn_cooldown": 3
 	},
 	1: {
 		"ground_cats": 4,
